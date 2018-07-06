@@ -1,0 +1,179 @@
+.ct-countdown {
+    display: block;
+    height: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    transition: all .5s ease;
+    position: relative;
+}
+.ct-countdown.js-added {
+    height: auto;
+    overflow: initial;
+    visibility: visible;
+}
+
+.ct-countdown-inner {
+    overflow: hidden;
+    visibility: hidden;
+    transition: all .5s ease;
+    width: 100%;
+    height: 0px;
+}
+.ct-countdown-cont-w {
+    width: 100%;
+    border-bottom: 2px solid red;
+}
+.ct-countdown.ct-showing .ct-countdown-inner {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.ct-countdown .ct-closed {
+    overflow: initial;
+    visibility: visible;
+    opacity: 1;
+}
+
+.ct-countdown-cont {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+
+}
+
+.ct-timer {
+    background: #f96455;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.ct-clock-title {
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.ct-time-type-v .ct-clock-title {
+    flex: none;
+}
+
+.ct-time-type-h .ct-timer {
+   display: flex;
+    align-items: center;
+}
+.ct-time-type-h .ct-clock-title {
+    margin-right: 10px;
+}
+
+.ct-timer .ct-num{
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    cursor: default;
+}
+.ct-timer .ct-num span {
+    padding: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    min-width: 30px;
+}
+
+.ct-text {
+    margin-left: 15px;
+}
+.ct-text code {
+    background: #fcffa9;
+    border: 2px dashed #aaa;
+    margin-left: 10px;
+}
+.ct-close {
+    width: 2em;
+    height: 2em;
+    padding: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    display: block;
+    transition: all .5s ease;
+    transform: translate( -50%, -50% );
+    line-height: 0;
+    opacity: 0;
+    z-index: 0;
+    visibility: hidden;
+}
+.js-added .ct-close{
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+}
+.ct-close svg {
+    fill: currentColor;
+}
+
+.ct-closed .ct-close {
+    background: #fff;
+    top: 0;
+    transform: translate( -50%, 0% );
+}
+.ct-closed .ct-close svg {
+    transition: all .5s ease;
+}
+.ct-closed .ct-close svg {
+    transform: rotate(180deg);
+}
+
+.ct-text-w {
+    display: inline-block;
+}
+
+@media (max-width: 720px) {
+
+
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+    .ct-countdown.ct-showing .ct-countdown-inner .ct-timer {
+        display: inline-block;
+    }
+
+    .ct-text {
+        margin-top: 10px;
+    }
+
+    .ct-countdown.ct-time-type-h .ct-timer div {
+        display: inline-block;
+    }
+
+    .ct-close {
+        right: 0px;
+        width: 25px;
+        height: 25px;
+        transform: translate( 0%, -50% );
+    }
+    .ct-countdown-cont {
+        display: block;
+        text-align: center;
+        padding: 15px 15px;
+    }
+    .ct-timer {
+        display: inline-block;
+        flex: none;
+        margin: 0 auto;
+    }
+    .ct-text-w {
+        display: block;
+    }
+
+    .ct-text code {
+        margin-left: 0px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+}
