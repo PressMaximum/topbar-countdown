@@ -2,7 +2,7 @@
 /*
 Plugin Name: Topbar Countdown
 Plugin URI: https://pressmaximum.com/
-Description: Display countdown on top of your website
+Description: Add a banner on the top of screen with countdown clock and custom message.
 Author: PressMaximum
 Author URI: https://pressmaximum.com/
 Version: 0.0.1
@@ -97,7 +97,6 @@ class Topbar_Countdown {
 				'settings'           => 'topbar_countdown_endate',
 				'twelve_hour_format' => false,
 				'active_callback'    => array( $this, 'show_on_fixed' ),
-
 			)
 		) );
 
@@ -433,6 +432,7 @@ class Topbar_Countdown {
 			'current_date' => $current_date,
 			'fixed_time'   => $fixed_date_time,
 			'time'         => $time_sting,
+			'clear'        => false,
 		);
 
 		$settings['_key'] = 'ct_endtime_' . $settings['type'];
@@ -454,6 +454,7 @@ class Topbar_Countdown {
 
 
 		if ( is_customize_preview() ) {
+			$settings['clear'] = 1;
 			unset( $_COOKIE[ $settings['_key'] ] );
 		}
 
@@ -528,9 +529,17 @@ class Topbar_Countdown {
                 document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
 
+            function deleteCookie(name) {
+                document.cookie = name +'=; path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+
             function ct_countdown() {
 
                 let endDate;
+
+                if( CountdownTopbar_Settings.clear ) {
+                    deleteCookie( CountdownTopbar_Settings._key );
+                }
 
                 let timeRemaining_time = getCookie(CountdownTopbar_Settings._key);
                 if (timeRemaining_time && timeRemaining_time > 0) {
