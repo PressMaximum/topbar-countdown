@@ -76,7 +76,7 @@ class Topbar_Countdown {
 			'type'     => 'select',
 			'choices'  => array(
 				'fixed' => __( 'Fixed timer for all visits', 'topbar-countdown' ),
-				'start' => __( 'Start the countdown when first visits', 'topbar-countdown' ),
+				'start' => __( 'Start the countdown when first visit for each user.', 'topbar-countdown' ),
 			)
 		) );
 
