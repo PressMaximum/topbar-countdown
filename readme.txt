@@ -23,7 +23,7 @@ This plugin will add Topbar Countdown on the top of your website that help you l
  * Advanced color settings.
 
 == Installation ==
-1. Upload the entire `topbar-countdown` folder to the /wp-content/plugins/ directory.
+1. Upload the entire `topbar-countdown.zip` folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the `Plugins` menu in WordPress.
 
 
