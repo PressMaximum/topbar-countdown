@@ -47,7 +47,7 @@
 .ct-timer {
     background: #f96455;
     color: #fff;
-    padding: 5px 10px;
+    padding: 3px 10px;
     text-align: center;
 }
 
@@ -76,7 +76,6 @@
     cursor: default;
 }
 .ct-timer .ct-num span {
-    padding: 3px;
     border-radius: 3px;
     display: inline-block;
     min-width: 30px;
@@ -87,8 +86,10 @@
 }
 .ct-text code {
     background: #fcffa9;
-    border: 2px dashed #aaa;
+    border: 1px dashed #aaa;
     margin-left: 10px;
+    font-size: 16px;
+    padding: 5px 10px 4px;
 }
 .ct-close {
     width: 2em;
