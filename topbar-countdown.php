@@ -461,12 +461,7 @@ class Topbar_Countdown {
 		?>
         <div class="ct-countdown <?php echo esc_attr( $type ); ?>">
             <span class="ct-close">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
-                  <g>
-                    <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z"/>
-                  </g>
-                </svg>
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 22.88 22.88"  xml:space="preserve"><path d="M0.324,1.909c-0.429-0.429-0.429-1.143,0-1.587c0.444-0.429,1.143-0.429,1.587,0l9.523,9.539l9.539-9.539c0.429-0.429,1.143-0.429,1.571,0c0.444,0.444,0.444,1.159,0,1.587l-9.523,9.524l9.523,9.539c0.444,0.429,0.444,1.143,0,1.587c-0.429,0.429-1.143,0.429-1.571,0l-9.539-9.539l-9.523,9.539c-0.444,0.429-1.143,0.429-1.587,0c-0.429-0.444-0.429-1.159,0-1.587l9.523-9.539L0.324,1.909z"/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
             </span>
             <div class="ct-countdown-inner">
 
@@ -478,16 +473,16 @@ class Topbar_Countdown {
                                 <div class="ct-clock-title"><?php echo $title; ?></div>
 							<?php } ?>
                             <div class="ct-num" title="<?php esc_attr_e( 'Days', 'topbar-countdown' ); ?>">
-                                <span class="ct-days"></span>
+                                <span class="ct-days">00</span>
                             </div>
                             <div class="ct-num" title="<?php esc_attr_e( 'Hours', 'topbar-countdown' ); ?>">
-                                <span class="ct-hours"></span>
+                                <span class="ct-hours">00</span>
                             </div>
                             <div class="ct-num" title="<?php esc_attr_e( 'Minutes', 'topbar-countdown' ); ?>">
-                                <span class="ct-minutes"></span>
+                                <span class="ct-minutes">00</span>
                             </div>
                             <div class="ct-num" title="<?php esc_attr_e( 'Seconds', 'topbar-countdown' ); ?>">
-                                <span class="ct-seconds"></span>
+                                <span class="ct-seconds">00</span>
                             </div>
                         </div>
 
@@ -539,6 +534,7 @@ class Topbar_Countdown {
 
                 if( CountdownTopbar_Settings.clear ) {
                     deleteCookie( CountdownTopbar_Settings._key );
+                    deleteCookie( 'ct_closed' );
                 }
 
                 let timeRemaining_time = getCookie(CountdownTopbar_Settings._key);
@@ -554,25 +550,29 @@ class Topbar_Countdown {
                 }
 
                 let el = document.querySelector('.ct-countdown');
+
+                if ( getCookie( 'ct_closed' ) === 1 || getCookie( 'ct_closed' ) === '1' ) {
+                    el.remove();
+                    return ;
+                }
+
+
                 document.querySelector('body').prepend(el);
                 let inner = el.querySelector('.ct-countdown-inner');
 
                 let _now = new Date().getTime();
-                if (_now > endDate) {
-                    el.remove();
-                } else {
+
+                setTimeout(function () {
+                    let h = el.querySelector('.ct-countdown-cont-w').offsetHeight;
+                    inner.style.height = h + 'px';
+                    el.classList.add('js-added');
+                    el.classList.add('ct-showing');
+
                     setTimeout(function () {
-                        let h = el.querySelector('.ct-countdown-cont-w').offsetHeight;
-                        inner.style.height = h + 'px';
-                        el.classList.add('js-added');
-                        el.classList.add('ct-showing');
+                        inner.style.height = 'auto';
+                    }, 300);
 
-                        setTimeout(function () {
-                            inner.style.height = 'auto';
-                        }, 300);
-
-                    }, 800);
-                }
+                }, 800);
 
                 // Toggle
                 el.querySelector('.ct-close').addEventListener("click", function (e) {
@@ -581,6 +581,7 @@ class Topbar_Countdown {
                         inner.style.height = '0px';
                         el.classList.remove('ct-showing');
                         el.classList.add('ct-closed');
+                        setCookie('ct_closed', 1, 360 );
                     } else {
                         let h = inner.querySelector('.ct-countdown-cont-w').offsetHeight;
                         inner.style.height = h + 'px';

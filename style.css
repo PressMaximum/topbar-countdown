@@ -81,7 +81,6 @@
     display: inline-block;
     min-width: 30px;
 }
-
 .ct-text {
     margin-left: 15px;
 }
@@ -91,15 +90,14 @@
     margin-left: 10px;
 }
 .ct-close {
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     padding: 5px;
     cursor: pointer;
     position: absolute;
     top: 50%;
     right: 15px;
     display: block;
-    transition: all .5s ease;
     transform: translate( -50%, -50% );
     line-height: 0;
     opacity: 0;
@@ -117,8 +115,11 @@
 
 .ct-closed .ct-close {
     background: #fff;
-    top: 0;
-    transform: translate( -50%, 0% );
+    opacity: 0;
+    height: 0px;
+    width: 0px;
+    display: block;
+    overflow: hidden;
 }
 .ct-closed .ct-close svg {
     transition: all .5s ease;
