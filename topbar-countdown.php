@@ -14,7 +14,7 @@ License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2
 class Topbar_Countdown {
 	public $headline = '';
 	public $clock_title = '';
-	public $code = 'COUPON_CODE';
+	public $code = 'COUPON-CODE';
 
 	function __construct() {
 		add_action( 'wp_footer', array( $this, 'add_bar' ) );
