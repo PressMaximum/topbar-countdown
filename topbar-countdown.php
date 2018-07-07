@@ -486,7 +486,7 @@ class Topbar_Countdown {
                             </div>
                         </div>
 
-						<?php if ( get_option( 'countdown_topbar_content' ) ) { ?>
+						<?php if ( $text ) { ?>
                             <div class="ct-text">
 								<?php echo wp_kses_post( $text ); ?>
                             </div>
